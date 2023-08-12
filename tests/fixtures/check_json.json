@@ -1,0 +1,77 @@
+{
+    "common": {
+        "follow": {
+            "new_value": false,
+            "status": "add"
+        },
+        "setting1": "Value 1",
+        "setting2": {
+            "old_value": 200,
+            "status": "removed"
+        },
+        "setting3": {
+            "new_value": null,
+            "old_value": true,
+            "status": "changed"
+        },
+        "setting4": {
+            "new_value": "blah blah",
+            "status": "add"
+        },
+        "setting5": {
+            "new_value": {
+                "key5": "value5"
+            },
+            "status": "add"
+        },
+        "setting6": {
+            "doge": {
+                "wow": {
+                    "new_value": "so much",
+                    "old_value": "",
+                    "status": "changed"
+                }
+            },
+            "key": "value",
+            "ops": {
+                "new_value": "vops",
+                "status": "add"
+            }
+        }
+    },
+    "group1": {
+        "baz": {
+            "new_value": "bars",
+            "old_value": "bas",
+            "status": "changed"
+        },
+        "foo": "bar",
+        "nest": {
+            "new_value": "str",
+            "old_value": {
+                "key": "value"
+            },
+            "status": "changed"
+        }
+    },
+    "group2": {
+        "old_value": {
+            "abc": 12345,
+            "deep": {
+                "id": 45
+            }
+        },
+        "status": "removed"
+    },
+    "group3": {
+        "new_value": {
+            "deep": {
+                "id": {
+                    "number": 45
+                }
+            },
+            "fee": 100500
+        },
+        "status": "add"
+    }
+}
