@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "hexlet-code"
+version = "0.1.0"
+description = ""
+authors = ["despiqqqq <117080938+despiqqqq@users.noreply.github.com>"]
+readme = "README.md"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Other Audience",
+    "License :: Aladdin Free Public License (AFPL)",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3 :: Only",
+]
+packages = [{ include = "gendiff" }]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pyyaml = "^6.0"
+
+[tool.poetry.scripts]
+gendiff = "gendiff.scripts.gendiff_script:main"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.3.2"
+flake8 = "^6.0.0"
+pytest-cov = "^4.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
