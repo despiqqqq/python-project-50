@@ -25,4 +25,4 @@ Formats: {{{", ".join(available_formats)}}}.'''
     )
 
     args = parser.parse_args()
-    return args.first_file, args.second_file, args.format
+    return args.first_file, args.second_file, args.formats
