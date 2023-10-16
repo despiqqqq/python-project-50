@@ -1,5 +1,7 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/despiqqqq/python-project-50/workflows/hexlet-check/badge.svg)](https://github.com/despiqqqq/python-project-50/actions)
+[![Maintainability](https://api.codeclimate.com/v1/badges/9ec6da9ee736e21cec66/maintainability)](https://codeclimate.com/github/despiqqqq/python-project-50/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/9ec6da9ee736e21cec66/test_coverage)](https://codeclimate.com/github/despiqqqq/python-project-50/test_coverage)
 # Difference generator
 
 ### Performs comparison of documents in *.json, *.yml, *.yaml formats containing a dictionary of dictionaries. Finds differences in keys and their values and displays them in the specified format.
