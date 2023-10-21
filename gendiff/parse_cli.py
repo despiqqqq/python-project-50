@@ -1,13 +1,13 @@
 import argparse
 
-
+AVAILABLE_FORMATS = ['stylish', 'plain', 'json']
 def parse_cli():
     """Parse command line args and/ or returns tuple filepaths 1, 2 & formats.
 
     :returns: (filepath1, filepath2, formats). Tuple of filepath to first_file,
     second_file and formats if any, else default."""
 
-    available_formats = ['stylish', 'plain', 'json']
+
 
     parser = argparse.ArgumentParser(
         prog='gendiff',
