@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "hexlet-code"
 version = "0.1.0"
-description = ""
+description = "gendiff Compares two configuration files and shows a difference."
 authors = ["despiqqqq <117080938+despiqqqq@users.noreply.github.com>"]
 readme = "README.md"
 classifiers = [
