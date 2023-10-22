@@ -19,5 +19,4 @@ package-remove:
 test:
 	poetry run pytest
 
-coverage:
-    coverage run --source=. -m pytest -ra
+
