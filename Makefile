@@ -16,6 +16,4 @@ package-install:
 package-remove:
 	python3 -m pip uninstall hexlet-code
 
-test:
-	poetry run pytest
 
