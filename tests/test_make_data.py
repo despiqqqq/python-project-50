@@ -15,4 +15,3 @@ def prepared_files(request):
             result_file.read(),
             format_name,
         )
-    
