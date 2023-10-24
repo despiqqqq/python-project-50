@@ -1,39 +1,17 @@
-from gendiff.make_data import make_value
+import os
+import pytest
 
 
-PATH_FILE_JSON = 'tests/fixtures/file1.json'
-PATH_FILE_YAML = 'tests/fixtures/file1.yml'
-CHECK = {
-    "common": {
-        "setting1": "Value 1",
-        "setting2": 200,
-        "setting3": True,
-        "setting6": {
-            "key": "value",
-            "doge": {
-                "wow": ""
-            }
-        }
-    },
-    "group1": {
-        "baz": "bas",
-        "foo": "bar",
-        "nest": {
-            "key": "value"
-        }
-    },
-    "group2": {
-        "abc": 12345,
-        "deep": {
-            "id": 45
-        }
-    }
-}
+@pytest.fixture(scope="function")
+def prepared_files(request):
+    file1_name, file2_name, result_file_name, format_name = request.param
 
+    fixtures_path = os.path.join(os.path.dirname(__file__), "fixtures")
 
-def test_make_value_json():
-    assert make_value(PATH_FILE_JSON) == CHECK
-
-
-def test_make_value_yaml():
-    assert make_value(PATH_FILE_YAML) == CHECK
+    with open(os.path.join(fixtures_path, result_file_name)) as result_file:
+        return (
+            os.path.join(fixtures_path, file1_name),
+            os.path.join(fixtures_path, file2_name),
+            result_file.read(),
+            format_name,
+        )
