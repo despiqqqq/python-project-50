@@ -21,4 +21,3 @@ lint:
 
 test:
 	poetry run pytest
-
