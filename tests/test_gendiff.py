@@ -12,28 +12,28 @@ def prepared_files(request):
     argnames="prepared_files",
     argvalues=[
         (
-                'tree1.json',
-                'tree2.json',
-                "tree_json_result.txt",
-                "stylish"
+            'tree1.json',
+            'tree2.json',
+            "tree_json_result.txt",
+            "stylish"
         ),
         (
-                'tree1.yml',
-                'tree2.yml',
-                "tree_yaml_result.txt",
-                "stylish"
+            'tree1.yml',
+            'tree2.yml',
+            "tree_yaml_result.txt",
+            "stylish"
         ),
         (
-                'tree1.json',
-                'tree2.json',
-                "plain_json_result.txt",
-                "plain"
+            'tree1.json',
+            'tree2.json',
+            "plain_json_result.txt",
+            "plain"
         ),
         (
-                'tree1.json',
-                'tree2.json',
-                "json_format_result.json",
-                "json"
+            'tree1.json',
+            'tree2.json',
+            "json_format_result.json",
+            "json"
         ),
     ],
     indirect=True
