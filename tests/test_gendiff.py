@@ -1,11 +1,14 @@
 import pytest
 from gendiff import generate_diff
+import os
 
 
 @pytest.fixture()
 def prepared_files(request):
     file1_path, file2_path, result_render, format_name = request.param
-    return file1_path, file2_path, result_render, format_name
+    path = os.path.join(os.path.dirname(__file__), 'fixtures')
+    return (os.path.join(path, file1_path), os.path.join(path, file2_path), os.path.join(path, result_render),
+            format_name)
 
 
 @pytest.mark.parametrize(
