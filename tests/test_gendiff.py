@@ -1,8 +1,6 @@
 import pytest
 from gendiff import generate_diff
 
-
-
 P1_JSON = 'tests/fixtures/tree1.json'
 P2_JSON = 'tests/fixtures/tree2.json'
 
