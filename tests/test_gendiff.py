@@ -1,6 +1,6 @@
 import pytest
 from gendiff import generate_diff
-import os
+
 
 
 P1_JSON = 'tests/fixtures/tree1.json'
