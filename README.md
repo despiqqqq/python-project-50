@@ -35,3 +35,4 @@
 
 
 # Work difference generator
+[![asciicast](https://asciinema.org/a/BJNNFxIBQCwyxQS2we8eqhK6N.svg)](https://asciinema.org/a/BJNNFxIBQCwyxQS2we8eqhK6N)
