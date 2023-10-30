@@ -1,2 +1,4 @@
-coverege.xml
-gendiff/scripts/__pycache__/
+.venv/
+__pycache__/
+/dist/
+.idea/

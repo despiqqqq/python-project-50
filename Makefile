@@ -6,7 +6,7 @@ gendiff:
 
 build:
 	poetry build
-
+	
 publish:
 	poetry publish --dry-run
 

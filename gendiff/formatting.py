@@ -11,5 +11,5 @@ FORMAT = {
 
 def formatting(diff, format_="stylish"):
     if not (func := FORMAT.get(format_)):
-        raise ValueError("ERROR: Wrong formats style!")
+        raise ValueError("ERROR: Wrong format style!")
     return func(diff)
