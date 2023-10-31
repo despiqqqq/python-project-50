@@ -22,5 +22,5 @@ lint:
 test:
 	poetry run pytest
 
-coverage-test:
+test-coverage:
 	poetry run coverage
