@@ -1,15 +1,12 @@
 from gendiff.diff_tree import get_key, get_value, get_children, get_type
 
-
 TRANSLATOR = {True: "true", False: "false", None: "null"}
+INDENT = 4
 
 
 def translate(value):
     is_bool_or_none = bool(isinstance(value, bool) or value is None)
     return TRANSLATOR.get(value) if is_bool_or_none else value
-
-
-INDENT = 4
 
 
 def prepare_indent(depth, sym, replacer=" "):
