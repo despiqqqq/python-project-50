@@ -13,13 +13,13 @@ def prepare_indent(depth, sym, replacer=" "):
     return f"{(depth * INDENT - 2) * replacer}{sym} "
 
 
-def deep_line(value, depth):
+def translate_value_recursive(value, depth):
     if isinstance(value, dict):
-        deep_lines = [
-            prepare_indent(depth, " ") + f'{key}: {deep_line(val, depth + 1)}'
+        translate_value_recursive = [
+            prepare_indent(depth, " ") + f'{key}: {translate_value_recursive(val, depth + 1)}'
             for key, val in value.items()
         ]
-        result = "\n".join(deep_lines)
+        result = "\n".join(translate_value_recursive)
         return f"{{\n{result}\n" + prepare_indent(depth - 1, ' ') + "}"
 
     return str(translate(value))
