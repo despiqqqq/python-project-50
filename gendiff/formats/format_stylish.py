@@ -16,7 +16,8 @@ def prepare_indent(depth, sym, replacer=" "):
 def translate_value_recursive(value, depth):
     if isinstance(value, dict):
         translate_value_recursive = [
-            prepare_indent(depth, " ") + f'{key}: {translate_value_recursive(val, depth + 1)}'
+            prepare_indent(depth, " ") + (f'{key}:'
+                                          f' {translate_value_recursive(val, depth + 1)}')
             for key, val in value.items()
         ]
         result = "\n".join(translate_value_recursive)
@@ -51,21 +52,21 @@ def make_stylish(diff_tree, depth=0):
         for sym, val in zip(("-", "+"), values):
             indent = prepare_indent(depth, sym)
 
-            line = indent + f"{key}: {deep_line(val, depth + 1)}"
+            line = indent + f"{key}: {translate_value_recursive(val, depth + 1)}"
             lines.append(line)
         return "\n".join(lines)
 
     elif node_type == "same":
         indent = prepare_indent(depth, " ")
-        return indent + f"{key}: {deep_line(values, depth + 1)}"
+        return indent + f"{key}: {translate_value_recursive(values, depth + 1)}"
 
     elif node_type == "added":
         indent_plus = prepare_indent(depth, "+")
-        return indent_plus + f"{key}: {deep_line(values, depth + 1)}"
+        return indent_plus + f"{key}: {translate_value_recursive(values, depth + 1)}"
 
     elif node_type == "deleted":
         indent_minus = prepare_indent(depth, "-")
-        return indent_minus + f"{key}: {deep_line(values, depth + 1)}"
+        return indent_minus + f"{key}: {translate_value_recursive(values, depth + 1)}"
 
     else:
         raise ValueError("Unknown node type")

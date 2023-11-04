@@ -1,17 +1,19 @@
-import io
+import os
 import json
 import yaml
 
 
-def get_data(data: str, extension: str):
-    with io.StringIO(data) as file:
-        return parse_data(file, extension)
+def get_data(file_path: str):
+    with open(file_path, 'r') as file:
+        data = file.read()
+        extension = os.path.splitext(file_path)[1]
+    return parse_data(data, extension)
 
 
-def parse_data(file, extension):
+def parse_data(data, extension):
     if extension in (".yml", ".yaml"):
-        return yaml.safe_load(file)
+        return yaml.safe_load(data)
     elif extension == ".json":
-        return json.load(file)
+        return json.loads(data)
     else:
         raise ValueError('Filetype is not supported.')
