@@ -40,34 +40,52 @@ def make_stylish(diff_tree, depth=0):
 
     if node_type == "parent":
         line = prepare_indent(depth, " ") + f"{key}: "
-
-        ends = map(lambda node: make_stylish(node, depth + 1), children)
-        ends = "\n".join(ends)
-
+        ends = make_stylish_parent(children, depth)
         line += f"{{\n{ends}\n" + prepare_indent(depth, ' ') + "}"
         return line
 
     elif node_type in ["changed", "same", "added", "deleted"]:
         if node_type == "changed":
-            lines = []
-            for sym, val in zip(("-", "+"), values):
-                indent = prepare_indent(depth, sym)
-
-                line = indent + f"{key}: {pretty_print(val, depth + 1)}"
-                lines.append(line)
-            return "\n".join(lines)
+            return make_stylish_changed(key, values, depth)
 
         elif node_type == "same":
-            indent = prepare_indent(depth, " ")
-            return indent + f"{key}: {pretty_print(values, depth + 1)}"
+            return make_stylish_same(key, values, depth)
 
         elif node_type == "added":
-            indent_plus = prepare_indent(depth, "+")
-            return indent_plus + f"{key}: {pretty_print(values, depth + 1)}"
+            return make_stylish_added(key, values, depth)
 
         elif node_type == "deleted":
-            indent_minus = prepare_indent(depth, "-")
-            return indent_minus + f"{key}: {pretty_print(values, depth + 1)}"
+            return make_stylish_deleted(key, values, depth)
 
     else:
         raise ValueError("Unknown node type")
+
+
+def make_stylish_parent(children, depth):
+    ends = map(lambda node: make_stylish(node, depth + 1), children)
+    ends = "\n".join(ends)
+    return ends
+
+
+def make_stylish_changed(key, values, depth):
+    lines = []
+    for sym, val in zip(("-", "+"), values):
+        indent = prepare_indent(depth, sym)
+        line = indent + f"{key}: {pretty_print(val, depth + 1)}"
+        lines.append(line)
+    return "\n".join(lines)
+
+
+def make_stylish_same(key, values, depth):
+    indent = prepare_indent(depth, " ")
+    return indent + f"{key}: {pretty_print(values, depth + 1)}"
+
+
+def make_stylish_added(key, values, depth):
+    indent_plus = prepare_indent(depth, "+")
+    return indent_plus + f"{key}: {pretty_print(values, depth + 1)}"
+
+
+def make_stylish_deleted(key, values, depth):
+    indent_minus = prepare_indent(depth, "-")
+    return indent_minus + f"{key}: {pretty_print(values, depth + 1)}"
