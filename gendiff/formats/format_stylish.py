@@ -16,14 +16,14 @@ def prepare_indent(depth, sym, replacer=" "):
 def pretty_print(value, depth):
     if isinstance(value, dict):
         deep_lines = [
-            prepare_indent(depth, " ") + f'{key}: {pretty_print(val, depth + 1)}'
+            prepare_indent(depth, " ") + (f'{key}:'
+                                          f' {pretty_print(val, depth + 1)}')
             for key, val in value.items()
         ]
         result = "\n".join(deep_lines)
         return f"{{\n{result}\n" + prepare_indent(depth - 1, ' ') + "}"
 
     return str(translate(value))
-
 
 
 def make_stylish(diff_tree, depth=0):

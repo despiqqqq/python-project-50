@@ -51,11 +51,13 @@ def make_plain(item, current_key=""):
 
     elif node_type == "changed":
         val1, val2 = map(value_to_str, values)
-        line = f"Property '{current_key + key}' was updated. From {val1} to {val2}"
+        line = (f"Property '{current_key + key}'"
+                f" was updated. From {val1} to {val2}")
         return line
 
     elif node_type == "added":
-        line = f"Property '{current_key + key}' was added with value: {value_to_str(values)}"
+        line = (f"Property '{current_key + key}'"
+                f" was added with value: {value_to_str(values)}")
         return line
 
     elif node_type == "deleted":
