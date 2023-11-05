@@ -13,17 +13,17 @@ def prepare_indent(depth, sym, replacer=" "):
     return f"{(depth * INDENT - 2) * replacer}{sym} "
 
 
-def translate_value_recursive(value, depth):
+def pretty_print(value, depth):
     if isinstance(value, dict):
-        translate_value_recursive = [
-            prepare_indent(depth, " ") + (f'{key}:'
-                                          f' {translate_value_recursive(val, depth + 1)}')
+        deep_lines = [
+            prepare_indent(depth, " ") + f'{key}: {pretty_print(val, depth + 1)}'
             for key, val in value.items()
         ]
-        result = "\n".join(translate_value_recursive)
+        result = "\n".join(deep_lines)
         return f"{{\n{result}\n" + prepare_indent(depth - 1, ' ') + "}"
 
     return str(translate(value))
+
 
 
 def make_stylish(diff_tree, depth=0):
@@ -47,26 +47,27 @@ def make_stylish(diff_tree, depth=0):
         line += f"{{\n{ends}\n" + prepare_indent(depth, ' ') + "}"
         return line
 
-    elif node_type == "changed":
-        lines = []
-        for sym, val in zip(("-", "+"), values):
-            indent = prepare_indent(depth, sym)
+    elif node_type in ["changed", "same", "added", "deleted"]:
+        if node_type == "changed":
+            lines = []
+            for sym, val in zip(("-", "+"), values):
+                indent = prepare_indent(depth, sym)
 
-            line = indent + f"{key}: {translate_value_recursive(val, depth + 1)}"
-            lines.append(line)
-        return "\n".join(lines)
+                line = indent + f"{key}: {pretty_print(val, depth + 1)}"
+                lines.append(line)
+            return "\n".join(lines)
 
-    elif node_type == "same":
-        indent = prepare_indent(depth, " ")
-        return indent + f"{key}: {translate_value_recursive(values, depth + 1)}"
+        elif node_type == "same":
+            indent = prepare_indent(depth, " ")
+            return indent + f"{key}: {pretty_print(values, depth + 1)}"
 
-    elif node_type == "added":
-        indent_plus = prepare_indent(depth, "+")
-        return indent_plus + f"{key}: {translate_value_recursive(values, depth + 1)}"
+        elif node_type == "added":
+            indent_plus = prepare_indent(depth, "+")
+            return indent_plus + f"{key}: {pretty_print(values, depth + 1)}"
 
-    elif node_type == "deleted":
-        indent_minus = prepare_indent(depth, "-")
-        return indent_minus + f"{key}: {translate_value_recursive(values, depth + 1)}"
+        elif node_type == "deleted":
+            indent_minus = prepare_indent(depth, "-")
+            return indent_minus + f"{key}: {pretty_print(values, depth + 1)}"
 
     else:
         raise ValueError("Unknown node type")
