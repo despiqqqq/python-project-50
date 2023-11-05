@@ -5,7 +5,7 @@ import yaml
 def get_data(file_path: str):
     with open(file_path, 'r') as file:
         data = file.read()
-        extension = file_path.split(".")[-1]
+        extension = '.' + file_path.split(".")[-1]
     return parse_data(data, extension)
 
 
